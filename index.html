@@ -8,73 +8,140 @@
         body {
             margin: 0;
             padding: 40px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: #fff;
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #d0dce8;
             max-width: 600px;
             margin: 0 auto;
         }
-
         h1 {
             font-size: 2em;
             font-weight: normal;
             margin: 0 0 30px 0;
-            color: #000;
+            color: #1a1a1a;
             text-align: center;
         }
-
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            color: #1a1a1a;
+        }
         p {
             margin: 20px 0;
-            font-size: 1em;
+            font-size: 1.05em;
         }
-
         a {
-            color: #007ACC;
+            color: #0066cc;
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
         .profile-img {
             display: block;
             margin: 0 auto 30px auto;
             border-radius: 50%;
             max-width: 150px;
         }
-
         .about-me {
             margin: 30px 0;
         }
-
         .contact {
             list-style: none;
             padding: 0;
             margin: 40px 0 0 0;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
-
         .contact li {
-            margin: 10px 0;
+            margin: 0;
+        }
+        .contact a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05em;
+        }
+        .contact svg {
+            width: 20px;
+            height: 20px;
+            fill: #0066cc;
+        }
+        .news-section {
+            background-color: #e8f0f7;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 1px solid #d5e2ed;
+        }
+        .news-date {
+            color: #5a6c7d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .paper-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .algorithm-name {
+            font-weight: 600;
+            color: #0066cc;
+        }
+        .paper-links {
+            margin-top: 15px;
+        }
+        .paper-links a {
+            margin-right: 20px;
+            font-size: 0.95em;
         }
     </style>
 </head>
 <body>
     <h1>Hi! I am Michael Amir.</h1>
     <img src="profilepicture.jpg" alt="Michael Amir" class="profile-img">
-
+    
     <div class="about-me">
-        <p>I'm a postdoc in the <a href="https://proroklab.org/wp/" target="_blank">Prorok Lab</a> at Cambridge University, working on multi-agent and multi-robot systems. My research focuses on algorithms for multi-agent teams, with an emphasis on provable performance and safety guarantees, at the intersection of theoretical computer science and machine learning.</p>
+        <p>I'm a postdoc at the <a href="https://proroklab.org/wp/" target="_blank">Prorok Lab</a>, Cambridge University, working on multi-agent and multi-robot systems. My research focuses on algorithms for multi-agent teams, with an emphasis on provable performance and safety guarantees, at the intersection of machine learning and formal mathematics.</p>
+    </div>
+
+    <div class="news-section">
+        <h2>Recent News</h2>
+        <div class="news-date">January 2025</div>
+        <p class="paper-title">New paper in IEEE Transactions on Robotics!</p>
+        <p>Our paper "Time, Travel, and Energy in the Uniform Dispersion Problem" explores how robot swarms can simultaneously minimize mission time, distance travelled, and energy use in unknown environments. We prove that this triple optimum is attainable in simply-connected grid maps, but fundamentally impossible in general environments.</p>
+        <p>We introduce <span class="algorithm-name">FCDFS</span>, an ant-robotics, zero-communication algorithm that requires only local sensing and 5 bits of memory per robot to achieve these bounds.</p>
+        <p><strong>Authors:</strong> M. Amir and A. M. Bruckstein</p>
+        <div class="paper-links">
+            <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank">📄 IEEE T-RO Paper</a>
+            <a href="https://arxiv.org/abs/2404.19564" target="_blank">📄 arXiv Version</a>
+        </div>
+        <p style="font-size: 0.85em; color: #5a6c7d; margin-top: 10px;">DOI: 10.1109/TRO.2025.3577409</p>
     </div>
 
     <p>While this website is under construction, you can find my research publications on my <a href="https://scholar.google.co.il/citations?user=XaIdnakAAAAJ&hl=en" target="_blank">Google Scholar profile</a>.</p>
-
-    <p>Contact:</p>
+    
     <ul class="contact">
-        <li><a href="mailto:ma2151@cam.ac.uk">ma2151@cam.ac.uk</a></li>
-        <li><a href="https://www.linkedin.com/in/michael-amir-b9881b301?originalSubdomain=uk" target="_blank">LinkedIn</a></li>
+        <li>
+            <a href="mailto:ma2151@cam.ac.uk">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                ma2151@cam.ac.uk
+            </a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/michael-amir-b9881b301?originalSubdomain=uk" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                LinkedIn
+            </a>
+        </li>
     </ul>
 </body>
 </html>
