@@ -4,31 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Michael Amir | Multi-Agent Systems Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            padding: 40px 20px;
-            font-family: Arial, Helvetica, sans-serif;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
-            background: #f4f7fa;
-            max-width: 800px;
+            color: #333;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 900px;
             margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
         }
         h1 {
-            font-size: 2.2em;
-            font-weight: bold;
-            margin: 0 0 20px 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 0 10px 0;
             color: #1a1a1a;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #6c757d;
+            margin: 0;
+        }
+        nav {
             text-align: center;
+            margin-bottom: 30px;
+        }
+        nav a {
+            margin: 0 15px;
+            font-weight: 500;
+            color: #007bff;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         h2 {
-            font-size: 1.6em;
-            font-weight: bold;
+            font-size: 1.8em;
+            font-weight: 700;
             margin: 40px 0 15px 0;
             color: #1a1a1a;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 2px solid #007bff;
             padding-bottom: 10px;
+            width: fit-content;
         }
         p {
             margin: 15px 0;
@@ -37,33 +63,105 @@
         a {
             color: #007bff;
             text-decoration: none;
+            transition: color 0.2s;
         }
         a:hover {
+            color: #0056b3;
             text-decoration: underline;
         }
         .profile-img {
             display: block;
             margin: 0 auto 30px auto;
             border-radius: 50%;
-            max-width: 180px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .about-me {
-            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             text-align: center;
         }
-        .cv-link {
+        .link-btn {
             display: inline-block;
-            margin: 20px 0;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
             border-radius: 5px;
             font-weight: bold;
+            transition: background-color 0.2s;
+            margin-top: 20px;
         }
-        .cv-link:hover {
+        .link-btn:hover {
             background-color: #0056b3;
             text-decoration: none;
+        }
+        .scholar-link {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.1em;
+            font-weight: 500;
+            background: #e9f3ff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .publications-section {
+            margin: 30px 0;
+        }
+        .publication-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .publication-date {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .paper-title {
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .paper-links {
+            margin-top: 10px;
+        }
+        .paper-links a {
+            margin-right: 15px;
+            font-size: 0.95em;
+        }
+        /* Template 1: Image to side aligned with paragraph */
+        .template-side-image {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+        .template-side-image .publication-media {
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 0;
+        }
+        .template-side-image .publication-explanation {
+            flex: 1;
+            margin: 0;
+        }
+        /* Template 2: Image on top */
+        .template-top-image .publication-media {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        /* Template 3: No image - just text */
+        .template-no-image {
+            /* No specific styles needed */
         }
         .contact {
             list-style: none;
@@ -88,106 +186,101 @@
             height: 20px;
             fill: #007bff;
         }
-        .news-section {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 30px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .news-item {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        .news-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .news-date {
-            color: #6c757d;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-        .paper-title {
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-        }
-        .algorithm-name {
-            font-weight: bold;
-        }
-        .paper-links {
-            margin-top: 10px;
-        }
-        .paper-links a {
-            margin-right: 15px;
-            font-size: 0.95em;
+        @media (max-width: 600px) {
+            .template-side-image {
+                flex-direction: column;
+            }
+            .template-side-image .publication-media {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Dr. Michael Amir</h1>
-    <img src="profilepicture.jpg" alt="Michael Amir" class="profile-img">
-   
-    <div class="about-me">
-        <p>I'm a postdoctoral researcher at the University of Cambridge, affiliated with the <a href="https://proroklab.org/" target="_blank">Prorok Lab</a> and Trinity College. My research develops algorithms for multi-agent teams, emphasizing provable performance, safety guarantees, and AI alignment, at the intersection of machine learning, reinforcement learning, and formal methods.</p>
-        <a href="cv.pdf" download class="cv-link">Download CV</a>
-    </div>
+    <div class="container">
+        <header>
+            <h1>Dr. Michael Amir</h1>
+            <p class="subtitle">Postdoctoral Researcher in Multi-Agent Systems</p>
+        </header>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#publications">Updates</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <img src="profilepicture.jpg" alt="Michael Amir" class="profile-img">
+        
+        <section id="about" class="about-me">
+            <h2>About Me</h2>
+            <p>I'm a postdoctoral researcher at the University of Cambridge, affiliated with the <a href="https://proroklab.org/" target="_blank">Prorok Lab</a> and Trinity College. My current research develops algorithms for multi-agent teams at the intersection of machine learning and formal mathematics. My earlier research and <a href="phd_thesis.pdf" download>PhD Thesis</a> focused on multi-a(ge)nt systems on graphs.</p>
+            <a href="cv.pdf" download class="link-btn">Download CV</a>
+        </section>
 
-    <div class="news-section">
-        <h2>Recent News</h2>
-        <div class="news-item">
-            <div class="news-date">August 2025</div>
-            <p class="paper-title">Paper Accepted to CoRL 2025!</p>
-            <p>Our paper "ReCoDe: Reinforcement Learning-based Dynamic Constraint Design for Multi-Agent Coordination" has been accepted to the Conference on Robot Learning (CoRL) 2025. We propose a novel RL framework for dynamically designing constraints to improve multi-agent coordination in complex environments.</p>
-            <p><strong>Authors:</strong> M. Amir, G. Yang, Z. Gao, K. Okumura, H. Woo, A. Prorok</p>
-            <div class="paper-links">
-                <a href="https://arxiv.org/abs/2507.19151" target="_blank">📄 arXiv Preprint</a>
-            </div>
+        <div class="scholar-link">
+            <p>Explore my full research publications on <a href="https://scholar.google.co.il/citations?user=XaIdnakAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
         </div>
-        <div class="news-item">
-            <div class="news-date">July 2025</div>
-            <p class="paper-title">New Paper in IEEE Transactions on Robotics!</p>
-            <p>Our paper "Time, Travel, and Energy in the Uniform Dispersion Problem" asks how robot swarms can disperse while simultaneously minimizing mission time, distance travelled, and energy use in unknown environments. We prove that this triple optimum is attainable in simply-connected grid maps, but fundamentally impossible in general environments.</p>
-            <p>We introduce <span class="algorithm-name">FCDFS</span>, an ant-robotics, zero-communication algorithm that requires only local sensing and 5 bits of memory per robot to achieve these bounds.</p>
-            <p><strong>Authors:</strong> M. Amir and A. M. Bruckstein</p>
-            <div class="paper-links">
-                <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank">📄 IEEE T-RO Paper</a>
-                <a href="https://arxiv.org/abs/2404.19564" target="_blank">📄 arXiv Version</a>
+
+        <section id="publications" class="publications-section">
+            <h2>Recent News</h2>
+            <div class="publication-card">
+                <div class="publication-date">August 2025</div>
+                <p class="paper-title">Paper Accepted to CoRL 2025!</p>
+                <div class="template-side-image">
+                    <img src="recode.gif" alt="ReCoDe robot experiment" class="publication-media">
+                    <div>
+                        <p class="publication-explanation">Our paper "ReCoDe: Reinforcement Learning-based Dynamic Constraint Design for Multi-Agent Coordination" has been accepted to the Conference on Robot Learning (CoRL) 2025. We propose a novel RL framework for dynamically designing constraints to improve multi-agent coordination in complex environments.</p>
+                        <p><strong>Authors:</strong> M. Amir, G. Yang, Z. Gao, K. Okumura, H. Woo, A. Prorok</p>
+                        <div class="paper-links">
+                            <a href="https://arxiv.org/abs/2507.19151" target="_blank">📄 arXiv Preprint</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p style="font-size: 0.85em; color: #6c757d; margin-top: 10px;">DOI: 10.1109/TRO.2025.3577409</p>
-        </div>
-        <div class="news-item">
-            <div class="news-date">June 2025</div>
-            <p class="paper-title">New Preprint on Diversity in Cooperative Multi-Agent Learning</p>
-            <p>Excited to share our preprint "When Is Diversity Rewarded in Cooperative Multi-Agent Learning?" which explores under what conditions behavioral diversity benefits cooperative multi-agent reinforcement learning systems.</p>
-            <p><strong>Authors:</strong> M. Amir, M. Bettini, A. Prorok</p>
-            <div class="paper-links">
-                <a href="https://arxiv.org/abs/2506.09434" target="_blank">📄 arXiv Preprint</a>
+            <div class="publication-card template-no-image">
+                <div class="publication-date">July 2025</div>
+                <p class="paper-title">New Paper in IEEE Transactions on Robotics!</p>
+                <p>Our paper "Time, Travel, and Energy in the Uniform Dispersion Problem" asks how robot swarms can disperse while simultaneously minimizing mission time, distance travelled, and energy use in unknown environments. We prove that this triple optimum is attainable in simply-connected grid maps, but fundamentally impossible in general environments.</p>
+                <p>We introduce <span class="algorithm-name">FCDFS</span>, an ant-robotics, zero-communication algorithm that requires only local sensing and 5 bits of memory per robot to achieve these bounds.</p>
+                <p><strong>Authors:</strong> M. Amir and A. M. Bruckstein</p>
+                <div class="paper-links">
+                    <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank">📄 IEEE T-RO Paper</a>
+                    <a href="https://arxiv.org/abs/2404.19564" target="_blank">📄 arXiv Version</a>
+                </div>
+                <p style="font-size: 0.85em; color: #6c757d; margin-top: 10px;">DOI: 10.1109/TRO.2025.3577409</p>
             </div>
-        </div>
+            <div class="publication-card template-top-image">
+                <div class="publication-date">June 2025</div>
+                <img src="when_is_diversity_rewarded.png" alt="Diversity in Cooperative Multi-Agent Learning diagram" class="publication-media">
+                <p class="paper-title">New Preprint on Diversity in Cooperative Multi-Agent Learning</p>
+                <p>Excited to share our preprint "When Is Diversity Rewarded in Cooperative Multi-Agent Learning?" which explores under what conditions behavioral diversity benefits cooperative multi-agent reinforcement learning systems.</p>
+                <p><strong>Authors:</strong> M. Amir, M. Bettini, A. Prorok</p>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2506.09434" target="_blank">📄 arXiv Preprint</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p style="text-align: center;">I am always eager to discuss collaborations in multi-agent systems, reinforcement learning, and AI safety.</p>
+            <ul class="contact">
+                <li>
+                    <a href="mailto:ma2151@cam.ac.uk">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        ma2151@cam.ac.uk
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/michael-amir-b9881b301" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+        </section>
     </div>
-    <p>For a full list of my research publications, please visit my <a href="https://scholar.google.co.il/citations?user=XaIdnakAAAAJ&hl=en" target="_blank">Google Scholar profile</a>. I am always eager to discuss collaborations in multi-agent systems, reinforcement learning, and AI safety.</p>
-   
-    <ul class="contact">
-        <li>
-            <a href="mailto:ma2151@cam.ac.uk">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-                ma2151@cam.ac.uk
-            </a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/in/michael-amir-b9881b301" target="_blank">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                LinkedIn
-            </a>
-        </li>
-    </ul>
 </body>
 </html>
