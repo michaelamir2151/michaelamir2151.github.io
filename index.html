@@ -234,13 +234,24 @@
         /* ── Paper stack ── */
         .paper-stack { display: grid; gap: 0; margin-top: 4px; }
         .paper-entry {
-            display: flex; flex-direction: column;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) clamp(260px, 32vw, 360px);
+            align-items: start;
+            gap: 22px;
             padding: 18px 0;
             border-top: 1px solid var(--border);
         }
         .paper-entry:first-child { border-top: 0; padding-top: 2px; }
-        .paper-entry .news-media { max-width: 480px; }
+        .paper-visual {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        .paper-entry .news-media {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+        }
         .paper-title {
             font-weight: 600; font-size: var(--size-md);
             margin-bottom: 4px; color: var(--text);
@@ -313,13 +324,23 @@
             .profile-img { width: 100px; height: 100px; margin: 0 auto; }
             .bio h1 { font-size: 1.4rem; }
             .news-content { flex-direction: column; }
-            .news-content .news-media, .paper-entry .news-media { max-width: 100%; }
+            .news-content .news-media { max-width: 100%; }
             .news-header { flex-direction: column; align-items: flex-start; gap: 2px; }
             nav .container { flex-direction: column; gap: 6px; }
             section { padding: 2.5rem 0; }
             .timeline { padding-left: 1.5rem; }
             .news-item::before { left: -1.5rem; }
             .news-item::after { left: calc(-1.5rem + 7px); width: calc(1.5rem - 10px); }
+            .paper-entry {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .paper-visual {
+                justify-content: flex-start;
+            }
+            .paper-entry .news-media {
+                max-width: min(100%, 360px);
+            }
         }
     </style>
 </head>
@@ -372,14 +393,13 @@
                         <div class="news-type">Three Papers @ ICLR 2026</div>
                         <div class="news-date">2026.03</div>
                     </div>
-                    <div class="news-description">
-                        <p>
-                            I have three papers accepted at ICLR 2026! I'll be presenting work on robot policy watermarking, when diversity helps in cooperative multi-agent learning, and higher-order interactions in multi-agent pathfinding.
-                        </p>
-                    </div>
+                        <div class="news-description">
+                            <p>
+                                I have three papers accepted at ICLR 2026! I'll be presenting work on robot policy watermarking, when diversity helps in cooperative multi-agent learning, and higher-order interactions in multi-agent pathfinding.
+                            </p>
+                        </div>
                     <div class="paper-stack">
                         <div class="paper-entry">
-                            <img src="iclr2026-policy-watermarking.jpg" alt="Remotely detectable robot policy watermarking" class="news-media">
                             <div class="news-description">
                                 <p class="paper-title">Remotely Detectable Robot Policy Watermarking</p>
                                 <p>
@@ -391,10 +411,12 @@
                                     <a href="https://sites.google.com/view/robotpolicywatermarking/" target="_blank" rel="noreferrer" class="resource-link">website</a>
                                 </div>
                             </div>
+                            <div class="paper-visual">
+                                <img src="iclr2026-policy-watermarking.jpg" alt="Remotely detectable robot policy watermarking" class="news-media">
+                            </div>
                         </div>
 
                         <div class="paper-entry">
-                            <img src="iclr2026-diversity-marl.jpg" alt="Diversity in cooperative multi-agent learning" class="news-media">
                             <div class="news-description">
                                 <p class="paper-title">When Is Diversity Rewarded in Cooperative Multi-Agent Learning?</p>
                                 <p>
@@ -406,10 +428,12 @@
                                     <a href="https://sites.google.com/view/hetgps" target="_blank" rel="noreferrer" class="resource-link">website</a>
                                 </div>
                             </div>
+                            <div class="paper-visual">
+                                <img src="iclr2026-diversity-marl.jpg" alt="Diversity in cooperative multi-agent learning" class="news-media">
+                            </div>
                         </div>
 
                         <div class="paper-entry">
-                            <img src="iclr2026-hypergraph-mapf.gif" alt="Hypergraph neural networks for multi-agent pathfinding" class="news-media">
                             <div class="news-description">
                                 <p class="paper-title">Pairwise is Not Enough: Hypergraph Neural Networks for Multi-Agent Pathfinding</p>
                                 <p>
@@ -419,6 +443,9 @@
                                 <div class="news-links">
                                     <a href="https://arxiv.org/abs/2602.06733" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                 </div>
+                            </div>
+                            <div class="paper-visual">
+                                <img src="iclr2026-hypergraph-mapf.gif" alt="Hypergraph neural networks for multi-agent pathfinding" class="news-media">
                             </div>
                         </div>
                     </div>
