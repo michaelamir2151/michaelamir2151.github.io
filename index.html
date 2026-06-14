@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael Amir | AI & Multi-Agent Systems</title>
+    <meta name="description" content="Michael Amir is a postdoctoral researcher at the University of Cambridge (Prorok Lab), working on trust, safety, and coordination for AI and multi-agent systems in the physical world.">
+    <meta name="author" content="Michael Amir">
+    <link rel="canonical" href="https://michaelamir.com/">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="profilepicture.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://michaelamir.com/">
+    <meta property="og:title" content="Michael Amir | AI & Multi-Agent Systems">
+    <meta property="og:description" content="Postdoctoral researcher at the University of Cambridge working on trust, safety, and coordination for AI and multi-agent systems in the physical world.">
+    <meta property="og:image" content="https://michaelamir.com/profilepicture.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@im_michael_amir">
+    <meta name="twitter:title" content="Michael Amir | AI & Multi-Agent Systems">
+    <meta name="twitter:description" content="Postdoctoral researcher at the University of Cambridge working on trust, safety, and coordination for AI and multi-agent systems in the physical world.">
+    <meta name="twitter:image" content="https://michaelamir.com/profilepicture.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <style>
@@ -118,6 +137,7 @@
             color: var(--text); border-color: var(--text);
             text-decoration: none; opacity: 1;
         }
+        .icon-link svg { width: 18px; height: 18px; fill: currentColor; }
 
         /* ── Sections ── */
         section { padding: 3rem 0; }
@@ -314,6 +334,17 @@
             mask-image: linear-gradient(to bottom, transparent, black 4rem, black calc(100% - 3rem), transparent);
         }
 
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .news-item { opacity: 1 !important; transform: none !important; }
+        }
+
         /* ── Mobile ── */
         @media (max-width: 700px) {
             body { font-size: 14.5px; }
@@ -374,6 +405,12 @@
                     </a>
                     <a href="cv.pdf" target="_blank" rel="noreferrer" class="icon-link" aria-label="CV" title="Download CV">
                         <i class="ai ai-cv"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/michael-amir-b9881b301" target="_blank" rel="noreferrer" class="icon-link" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                    </a>
+                    <a href="https://x.com/im_michael_amir" target="_blank" rel="noreferrer" class="icon-link" aria-label="X" title="X (Twitter)">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </a>
                 </div>
             </div>
