@@ -278,6 +278,16 @@
             letter-spacing: -0.01em;
         }
 
+        /* ── Reviewing ── */
+        #reviewing {
+            border-top: 1px solid var(--border);
+        }
+        .reviewing-list {
+            font-family: var(--mono); font-size: var(--size-xs);
+            color: var(--text-secondary); letter-spacing: 0.02em;
+            line-height: 2;
+        }
+
         /* ── Contact ── */
         #contact {
             text-align: center;
@@ -320,7 +330,8 @@
         }
         .hero-section { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
         #news { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.06s both; }
-        #contact { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
+        #reviewing { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
+        #contact { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
 
         .news-item {
             opacity: 0; transform: translateY(8px);
@@ -577,6 +588,13 @@
         </div>
     </section>
 
+    <section id="reviewing">
+        <div class="container">
+            <h2>Reviewing</h2>
+            <p class="reviewing-list">Nature Communications Engineering &middot; IEEE T-RO &middot; JAIR &middot; ICML &middot; ICLR &middot; JAAMAS &middot; ECAI &middot; CoRL &middot; MRS &middot; IROS &middot; SAC &middot; DARS &middot; RSS</p>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="container">
             <h2>Contact</h2>
@@ -591,7 +609,7 @@
     <footer>
         <div class="container">
             <span>london, uk</span>
-            <span>last updated 2026.06</span>
+            <span>last updated 2026.07</span>
         </div>
     </footer>
 
