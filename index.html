@@ -248,10 +248,6 @@
         }
         .paper-authors { font-size: var(--size-sm); color: var(--text-tertiary); }
         .paper-authors strong { color: var(--text); font-weight: 600; }
-        .paper-desc {
-            margin-top: 8px; color: var(--text-secondary);
-            font-size: var(--size-sm); line-height: 1.65;
-        }
         .paper-links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
         .resource-link {
             font-family: var(--mono);
@@ -357,7 +353,6 @@
                 row-gap: 12px;
             }
             .paper-visual { width: 100%; max-width: 420px; }
-            .paper-desc { margin-top: 0; }
         }
     </style>
 </head>
@@ -431,7 +426,6 @@
                                 <p class="paper-authors">B.&nbsp;Chang, <strong>M.&nbsp;Amir</strong>, M.&nbsp;Flageat, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">Can a robot send a message just by moving? We encode short messages, such as an agent's current intent, as keyed noise on a pre-trained policy's actions, which a key holder can decode from remote observations like video. This needs no extra hardware and does not degrade the policy's performance.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2609.08920" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://sites.google.com/view/motionbasedmessaging/home" target="_blank" rel="noreferrer" class="resource-link">website</a>
@@ -447,7 +441,6 @@
                                 <p class="paper-authors">E.&nbsp;Clifford*, <strong>M.&nbsp;Amir</strong>*, A.&nbsp;Findeis, A.&nbsp;Zhao, R.&nbsp;Mullins</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">Preference data records which response was chosen, but not why. Methods like Inverse Constitutional AI compress it into short lists of natural-language principles. We argue that such a list is incomplete without the executor that applies it, and study open problems in measuring, composing, and comparing reconstructed constitutions.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2606.30116" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://github.com/eleanor-clifford/OpenProblemsInCAI" target="_blank" rel="noreferrer" class="resource-link">code</a>
@@ -463,7 +456,6 @@
                                 <p class="paper-authors"><strong>M.&nbsp;Amir</strong>*, M.&nbsp;Flageat*, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">How do you verify what policy a robot is deploying without access to its internals? We formalize this remote-observation setting through noisy, asynchronous video glimpses and introduce CoNoCo, which embeds a spectral watermark into a robot's motions via colored noise while preserving the marginal action distribution. The result is remote policy auditing from ordinary footage, with applications to safety, accountability, and IP protection.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2512.15379" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://sites.google.com/view/robotpolicywatermarking/" target="_blank" rel="noreferrer" class="resource-link">website</a>
@@ -494,7 +486,6 @@
                                 <p class="paper-authors">M.&nbsp;Frost, <strong>M.&nbsp;Amir</strong>, S.&nbsp;D.&nbsp;Bopardikar</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">In Capture the Flag on graphs, attackers can draw on a library of heuristics while the defenders run a single fixed policy. We show that a central oracle can still diversify the defense by controlling what each defender observes, and approximate equilibria of the resulting game with a Double Oracle algorithm.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2609.06178" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://github.com/rfrost114/Visibility-Profile-Games" target="_blank" rel="noreferrer" class="resource-link">code</a>
@@ -510,7 +501,6 @@
                                 <p class="paper-authors">H.&nbsp;X.&nbsp;Li, <strong>M.&nbsp;Amir</strong>, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">Engineers train robot policies, and architects design the warehouses robots operate in. But these two problems are usually solved separately. We introduce <strong>DiCoDe</strong>, which uses diffusion models to <em>co-design</em> agent behavior and the environment together: as the agents improve they signal which environments are useful, and as the environments improve they become better training settings for the agents. This scales multi-agent co-design to much larger problems, including warehouse layouts and wind farm control.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2511.03100" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://github.com/MarkHaoxiang/diffusion-co-design" target="_blank" rel="noreferrer" class="resource-link">code</a>
@@ -526,7 +516,6 @@
                                 <p class="paper-authors"><strong>M.&nbsp;Amir</strong>*, M.&nbsp;Bettini*, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">We know how to train heterogeneous agents, but when does heterogeneity actually improve performance? In cooperative MARL, we show that the answer is tightly related to the curvature of the reward function, and introduce HetGPS, an algorithm that automatically discovers environments where diversity pays off.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2506.09434" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://sites.google.com/view/hetgps" target="_blank" rel="noreferrer" class="resource-link">website</a>
@@ -542,7 +531,6 @@
                                 <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, G.&nbsp;Yang, Z.&nbsp;Gao, K.&nbsp;Okumura, H.&nbsp;Woo, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">We introduced ReCoDe, a novel RL framework that learns to dynamically generate <i>constraints</i>, rather than actions, to improve team coordination in real-time. This allows agent teams to benefit from expert controllers that determine their next action subject to these constraints.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2507.19151" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://www.youtube.com/watch?v=PQTa5rV8d4g" target="_blank" rel="noreferrer" class="resource-link">video</a>
@@ -564,7 +552,6 @@
                                 <p class="paper-authors">R.&nbsp;Jain, A.&nbsp;Moldagalieva, L.&nbsp;Magnino, <strong>M.&nbsp;Amir</strong>, K.&nbsp;Okumura, A.&nbsp;Shankar, W.&nbsp;Hönig, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">GAMBIT learns to plan continuous trajectories for large robot teams by selecting coordinated motion primitives, with a safeguarded rollout that guarantees collision-free execution. Like the chess opening it is named after, robots learn to give up locally optimal moves to help the team, and the planner scales to over a thousand robots.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2610.06290" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                 </div>
@@ -579,7 +566,6 @@
                                 <p class="paper-authors">R.&nbsp;Jain, K.&nbsp;Okumura, <strong>M.&nbsp;Amir</strong>, P.&nbsp;Lio, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">Standard GNNs model pairwise interactions, but multi-agent pathfinding is fundamentally a group coordination problem. HMAGAT uses directed hypergraph attention to capture higher-order interactions, establishing a new state of the art among learning-based MAPF solvers and outperforming a much larger baseline in dense environments.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2602.06733" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                 </div>
@@ -594,7 +580,6 @@
                                 <p class="paper-authors">R.&nbsp;Jain, K.&nbsp;Okumura, <strong>M.&nbsp;Amir</strong>, A.&nbsp;Prorok</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">Finding near-optimal solutions for dense multi-agent pathfinding (MAPF) problems in real-time remains challenging even for state-of-the-art planners. To this end, we develop a hybrid framework that integrates a learned heuristic derived from MAGAT, a neural MAPF policy with a graph attention scheme, into a leading search-based algorithm, LaCAM. Our work establishes, perhaps for the first time, that learnt heuristics can outperform SoTA search-based planners in dense MAPF problems.</p>
                                 <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2510.17382" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://github.com/proroklab/lagat" target="_blank" rel="noreferrer" class="resource-link">code</a>
@@ -616,7 +601,6 @@
                                 <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, A.&nbsp;M.&nbsp;Bruckstein</p>
                             </div>
                             <div class="paper-body">
-                                <p class="paper-desc">This work explores the fundamental efficiency limits of robot swarms. We prove when it's possible (or impossible!) to simultaneously optimize for time, distance, and energy during dispersion, and introduce <strong>FCDFS</strong>, an ant-robotics algorithm that achieves these bounds using only 5 bits of memory and zero communication.</p>
                                 <div class="paper-links">
                                     <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://arxiv.org/abs/2404.19564" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
