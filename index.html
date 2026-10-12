@@ -25,6 +25,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script>document.documentElement.classList.add('js');</script>
     <style>
         :root {
             --bg: #eef2f7;
@@ -34,6 +35,7 @@
             --accent: #1a1a2e;
             --border: #cdd5e0;
             --surface: #e2e8f0;
+            --card: #ffffff;
             --mono: 'JetBrains Mono', monospace;
             --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
@@ -45,7 +47,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
         body { scrollbar-width: none; }
         ::-webkit-scrollbar { display: none; }
@@ -67,7 +69,7 @@
 
         a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; font-weight: 500; transition: opacity 0.2s, text-decoration-color 0.2s; }
         a:hover { opacity: 0.6; text-decoration-color: var(--text); }
-        a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
         img { display: block; max-width: 100%; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 3rem; }
@@ -83,12 +85,13 @@
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         .nav-brand {
             font-family: var(--mono); font-size: var(--size-xs); font-weight: 500;
-            color: var(--text); letter-spacing: -0.02em;
+            color: var(--text); letter-spacing: -0.02em; text-decoration: none;
         }
         .nav-brand::before {
             content: '> ';
             color: var(--text-tertiary);
         }
+        .nav-brand:hover { opacity: 1; }
         .nav-links { display: flex; gap: 24px; }
         .nav-links a {
             font-family: var(--mono); font-size: var(--size-xs); font-weight: 400;
@@ -98,7 +101,7 @@
         .nav-links a:hover { color: var(--text); opacity: 1; text-decoration: none; }
 
         /* ── Hero ── */
-        .hero-section { padding: 3rem 0 2rem; }
+        .hero-section { padding: 3rem 0 2.5rem; }
         .hero-content { display: flex; align-items: flex-start; gap: 2.5rem; }
         .profile-img {
             width: 132px; height: 132px;
@@ -119,10 +122,9 @@
             font-weight: 400;
         }
 
-
         .bio-text {
             font-size: var(--size-sm); color: var(--text-secondary);
-            max-width: 500px; margin-bottom: 0.75rem; line-height: 1.7;
+            max-width: 580px; margin-bottom: 0.75rem; line-height: 1.7;
         }
         .btn-container { display: flex; gap: 8px; align-items: center; margin-top: 1.25rem; }
         .icon-link {
@@ -142,19 +144,39 @@
         /* ── Sections ── */
         section { padding: 3rem 0; }
 
-        .section-label {
-            font-family: var(--mono); font-size: var(--size-xs); font-weight: 400;
-            color: var(--text-tertiary); letter-spacing: 0.04em;
-            margin-bottom: 0.4rem;
-        }
         h2 {
             font-size: var(--size-xl); font-weight: 700;
             margin-bottom: 0.25rem; letter-spacing: -0.025em;
         }
         .section-intro {
             color: var(--text-secondary); font-size: var(--size-sm);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
+
+        /* ── Topic filter ── */
+        .tag-bar { display: none; flex-wrap: wrap; gap: 6px; margin-bottom: 2.75rem; }
+        .js .tag-bar { display: flex; }
+        .tag {
+            font-family: var(--mono); font-size: var(--size-xs); font-weight: 500;
+            color: var(--text-secondary); background: none;
+            border: 1px solid var(--border); border-radius: 3px;
+            padding: 3px 11px; cursor: pointer;
+            transition: all 0.15s;
+        }
+        .tag:hover { color: var(--text); border-color: var(--text); }
+        .tag[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .tag-count { margin-left: 8px; color: var(--text-tertiary); font-weight: 400; }
+        .tag[aria-pressed="true"] .tag-count { color: rgba(238,242,247,0.55); }
+
+        /* ── Paper groups ── */
+        .paper-groups { display: flex; flex-direction: column; gap: 3.5rem; }
+        .group-title {
+            display: flex; align-items: center; gap: 10px;
+            font-family: var(--mono); font-size: var(--size-md); font-weight: 600;
+            letter-spacing: -0.03em; margin-bottom: 1.5rem;
+        }
+        .group-title::before { content: '#'; color: var(--text-tertiary); font-weight: 400; }
+        .group-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
         /* ── Timeline ── */
         .timeline {
@@ -173,13 +195,18 @@
             );
         }
 
-        /* ── News items ── */
-        .news-item {
+        /* ── Papers ── */
+        .paper {
             position: relative;
-            padding: 0 0 2.5rem 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 260px;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: "head visual" "body visual";
+            column-gap: 28px;
+            padding: 0 0 2.25rem 0;
         }
-        .news-item:last-child { padding-bottom: 0; }
-        .news-item::before {
+        .paper:last-child { padding-bottom: 0; }
+        .paper::before {
             content: '';
             position: absolute;
             left: -2rem; top: 8px;
@@ -189,8 +216,8 @@
             transform: translateX(-0.5px);
             transition: background 0.3s;
         }
-        .news-item:hover::before { background: var(--text); }
-        .news-item::after {
+        .paper:hover::before { background: var(--text); }
+        .paper::after {
             content: '';
             position: absolute;
             left: calc(-2rem + 7px); top: 11px;
@@ -202,41 +229,30 @@
             );
         }
 
-        .news-header {
-            display: flex; justify-content: space-between; align-items: baseline;
-            margin-bottom: 8px; gap: 12px;
+        .paper-head { grid-area: head; }
+        .paper-body { grid-area: body; }
+        .paper-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 3px; }
+        .venue {
+            font-family: var(--mono); font-size: var(--size-sm); font-weight: 600;
+            color: var(--text); letter-spacing: -0.02em;
         }
-        .news-type {
-            font-family: var(--mono); font-size: var(--size-lg); font-weight: 600;
-            color: var(--text); letter-spacing: -0.03em;
+        .badge {
+            font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+            color: var(--text); border: 1px solid var(--text); border-radius: 3px;
+            padding: 0 6px; line-height: 1.6;
         }
-        .news-date {
-            font-family: var(--mono); font-size: var(--size-xs);
-            color: var(--text-tertiary);
-        }
-        .news-title {
+        .paper-title {
             font-weight: 600; font-size: var(--size-md);
-            margin-bottom: 6px; color: var(--text);
+            line-height: 1.4; margin-bottom: 4px; color: var(--text);
             letter-spacing: -0.015em;
         }
-        .news-content { display: flex; gap: 18px; align-items: flex-start; }
-        .news-media {
-            max-width: 100%; width: auto; height: auto; flex-shrink: 0;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
-            transition: opacity 0.2s;
-        }
-        .news-content .news-media { max-width: 240px; }
-        .news-media:hover { opacity: 0.8; }
-        .news-description p {
-            margin-bottom: 6px; color: var(--text-secondary);
+        .paper-authors { font-size: var(--size-sm); color: var(--text-tertiary); }
+        .paper-authors strong { color: var(--text); font-weight: 600; }
+        .paper-desc {
+            margin-top: 8px; color: var(--text-secondary);
             font-size: var(--size-sm); line-height: 1.65;
         }
-        .news-authors {
-            font-size: var(--size-sm); color: var(--text-tertiary);
-        }
-        .news-authors strong { color: var(--text); font-weight: 600; }
-        .news-links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 5px; }
+        .paper-links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
         .resource-link {
             font-family: var(--mono);
             display: inline-block; padding: 3px 11px;
@@ -251,54 +267,24 @@
             opacity: 1;
         }
 
-        /* ── Paper stack ── */
-        .paper-stack { display: grid; gap: 0; margin-top: 4px; }
-        .paper-entry {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) clamp(260px, 32vw, 360px);
-            align-items: start;
-            gap: 22px;
-            padding: 18px 0;
-            border-top: 1px solid var(--border);
-        }
-        .paper-entry:first-child { border-top: 0; padding-top: 2px; }
         .paper-visual {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
+            grid-area: visual; align-self: start;
+            aspect-ratio: 16 / 10;
+            background: var(--card);
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+            overflow: hidden;
         }
-        .paper-entry .news-media {
-            width: 100%;
-            max-width: 360px;
-            height: auto;
-        }
-        .paper-title {
-            font-weight: 600; font-size: var(--size-md);
-            margin-bottom: 4px; color: var(--text);
-            letter-spacing: -0.01em;
-        }
-
-        /* ── Reviewing ── */
-        #reviewing {
-            border-top: 1px solid var(--border);
-        }
-        .reviewing-list {
-            font-family: var(--mono); font-size: var(--size-xs);
-            color: var(--text-secondary); letter-spacing: 0.02em;
-            line-height: 2;
-        }
+        .paper-visual img { width: 100%; height: 100%; object-fit: contain; }
 
         /* ── Contact ── */
         #contact {
             text-align: center;
             border-top: 1px solid var(--border);
         }
-        .contact-pitch {
-            font-size: var(--size-sm); max-width: 500px;
-            margin: 0.75rem auto 1.5rem; color: var(--text-secondary);
-        }
         .contact-links {
             list-style: none; display: flex; justify-content: center; gap: 12px;
+            margin-top: 1rem;
         }
         .contact-links a {
             font-family: var(--mono); font-size: var(--size-xs); font-weight: 500;
@@ -320,8 +306,6 @@
         footer .container {
             display: flex; justify-content: space-between; align-items: center;
         }
-        footer a { color: var(--text-tertiary); text-decoration: none; }
-        footer a:hover { color: var(--text); opacity: 1; }
 
         /* ── Animations ── */
         @keyframes fadeIn {
@@ -329,21 +313,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .hero-section { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
-        #news { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.06s both; }
-        #reviewing { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
-        #contact { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+        #papers { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.06s both; }
+        #contact { animation: fadeIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.12s both; }
 
-        .news-item {
+        .js .paper {
             opacity: 0; transform: translateY(8px);
             transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1),
                         transform 0.3s cubic-bezier(0.22,1,0.36,1);
         }
-        .news-item.visible { opacity: 1; transform: translateY(0); }
-
-        #news {
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 4rem, black calc(100% - 3rem), transparent);
-            mask-image: linear-gradient(to bottom, transparent, black 4rem, black calc(100% - 3rem), transparent);
-        }
+        .js .paper.visible { opacity: 1; transform: translateY(0); }
 
         /* ── Reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
@@ -353,46 +331,43 @@
                 transition-duration: 0.001ms !important;
                 scroll-behavior: auto !important;
             }
-            .news-item { opacity: 1 !important; transform: none !important; }
+            .js .paper { opacity: 1 !important; transform: none !important; }
         }
 
         /* ── Mobile ── */
         @media (max-width: 700px) {
             body { font-size: 14.5px; }
+            html { scroll-padding-top: 96px; }
             .container { padding: 0 1.5rem; }
             .hero-section { padding: 3rem 0 2rem; }
             .hero-content { flex-direction: column; gap: 1.25rem; text-align: center; }
             .btn-container { justify-content: center; }
             .profile-img { width: 100px; height: 100px; margin: 0 auto; }
             .bio h1 { font-size: 1.4rem; }
-            .news-content { flex-direction: column; }
-            .news-content .news-media { max-width: 100%; }
-            .news-header { flex-direction: column; align-items: flex-start; gap: 2px; }
             nav .container { flex-direction: column; gap: 6px; }
             section { padding: 2.5rem 0; }
+            .paper-groups { gap: 2.75rem; }
             .timeline { padding-left: 1.5rem; }
-            .news-item::before { left: -1.5rem; }
-            .news-item::after { left: calc(-1.5rem + 7px); width: calc(1.5rem - 10px); }
-            .paper-entry {
-                grid-template-columns: 1fr;
-                gap: 14px;
+            .paper::before { left: -1.5rem; }
+            .paper::after { left: calc(-1.5rem + 7px); width: calc(1.5rem - 10px); }
+            .paper {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: auto;
+                grid-template-areas: "head" "visual" "body";
+                row-gap: 12px;
             }
-            .paper-visual {
-                justify-content: flex-start;
-            }
-            .paper-entry .news-media {
-                max-width: min(100%, 360px);
-            }
+            .paper-visual { width: 100%; max-width: 420px; }
+            .paper-desc { margin-top: 0; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
-            <div class="nav-brand">michael amir</div>
+            <a class="nav-brand" href="#about">michael amir</a>
             <div class="nav-links">
                 <a href="#about">about</a>
-                <a href="#news">news</a>
+                <a href="#papers">papers</a>
                 <a href="#contact">contact</a>
             </div>
         </div>
@@ -428,170 +403,380 @@
         </div>
     </section>
 
-    <section id="news">
+    <section id="papers">
         <div class="container">
-            <h2>Recent Work</h2>
+            <h2>Papers</h2>
             <p class="section-intro">
-                More publications on <a href="https://scholar.google.co.il/citations?user=XaIdnakAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>.
+                Grouped by topic, newest first. * denotes equal contribution. Also on <a href="https://scholar.google.co.il/citations?user=XaIdnakAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>.
             </p>
 
-            <div class="timeline">
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">New Role</div>
-                        <div class="news-date">2026.06</div>
-                    </div>
-                    <p class="news-title">Joining Google DeepMind</p>
-                    <div class="news-description">
-                        <p>
-                            I've joined Google DeepMind as a researcher, working on provenance.
-                        </p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">ICML 2026</div>
-                        <div class="news-date">2026.06</div>
-                    </div>
-                    <p class="news-title">Scaling Multi-Agent Environment Co-Design with Diffusion Models</p>
-                    <div class="news-description">
-                        <p>
-                            Engineers train robot policies, and architects design the warehouses robots operate in. But these two problems are usually solved separately. We introduce <strong>DiCoDe</strong>, which uses diffusion models to <em>co-design</em> agent behavior and the environment together: as the agents improve they signal which environments are useful, and as the environments improve they become better training settings for the agents. This scales multi-agent co-design to much larger problems, including warehouse layouts and wind farm control.
-                        </p>
-                        <p class="news-authors">H. X. Li, <strong>M. Amir</strong>, A. Prorok</p>
-                        <div class="news-links">
-                            <a href="https://arxiv.org/abs/2511.03100" target="_blank" rel="noreferrer" class="resource-link">paper</a>
-                        </div>
-                    </div>
-                    <img src="icml2026-co-design.jpg" alt="DiCoDe: diffusion-based multi-agent environment co-design pipeline" class="news-media" style="width: 100%; max-width: 100%; margin-top: 14px;">
-                </div>
+            <div class="tag-bar" role="group" aria-label="Filter papers by topic">
+                <button type="button" class="tag" data-filter="all" aria-pressed="true">all<span class="tag-count"></span></button>
+                <button type="button" class="tag" data-filter="provenance" aria-pressed="false">provenance &amp; trust<span class="tag-count"></span></button>
+                <button type="button" class="tag" data-filter="multi-agent" aria-pressed="false">multi-agent learning<span class="tag-count"></span></button>
+                <button type="button" class="tag" data-filter="planning" aria-pressed="false">multi-robot planning<span class="tag-count"></span></button>
+                <button type="button" class="tag" data-filter="swarms" aria-pressed="false">swarm algorithms<span class="tag-count"></span></button>
+            </div>
 
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">Three Papers @ ICLR 2026</div>
-                        <div class="news-date">2026.03</div>
-                    </div>
-                        <div class="news-description">
-                            <p>
-                                I have three papers accepted at ICLR 2026! I'll be presenting work on robot policy watermarking, when diversity helps in cooperative multi-agent learning, and higher-order interactions in multi-agent pathfinding.
-                            </p>
-                        </div>
-                    <div class="paper-stack">
-                        <div class="paper-entry">
-                            <div class="news-description">
-                                <p class="paper-title">Remotely Detectable Robot Policy Watermarking</p>
-                                <p>
-                                    How do you verify what policy a robot is deploying without access to its internals? We formalize this remote-observation setting through noisy, asynchronous video glimpses and introduce CoNoCo, which embeds a spectral watermark into a robot's motions via colored noise while preserving the marginal action distribution. The result is remote policy auditing from ordinary footage, with applications to safety, accountability, and IP protection.
-                                </p>
-                                <p class="news-authors"><strong>M. Amir</strong>*, M. Flageat*, A. Prorok</p>
-                                <div class="news-links">
+            <div class="paper-groups">
+
+                <!-- ───────── provenance & trust ───────── -->
+                <div class="paper-group" id="provenance" data-tag="provenance">
+                    <h3 class="group-title">provenance &amp; trust</h3>
+                    <div class="timeline">
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Preprint 2026</span></div>
+                                <h4 class="paper-title">Remotely Detectable Keyed Communication through Motion</h4>
+                                <p class="paper-authors">B.&nbsp;Chang, <strong>M.&nbsp;Amir</strong>, M.&nbsp;Flageat, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">Can a robot send a message just by moving? We encode short messages, such as an agent's current intent, as keyed noise on a pre-trained policy's actions, which a key holder can decode from remote observations like video. This needs no extra hardware and does not degrade the policy's performance.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2609.08920" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://sites.google.com/view/motionbasedmessaging/home" target="_blank" rel="noreferrer" class="resource-link">website</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/keyed-motion.jpg" alt="Messages encoded in robot motion and decoded remotely" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Preprint 2026</span></div>
+                                <h4 class="paper-title">Open Problems in Constitutional Preference Reconstruction</h4>
+                                <p class="paper-authors">E.&nbsp;Clifford*, <strong>M.&nbsp;Amir</strong>*, A.&nbsp;Findeis, A.&nbsp;Zhao, R.&nbsp;Mullins</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">Preference data records which response was chosen, but not why. Methods like Inverse Constitutional AI compress it into short lists of natural-language principles. We argue that such a list is incomplete without the executor that applies it, and study open problems in measuring, composing, and comparing reconstructed constitutions.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2606.30116" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://github.com/eleanor-clifford/OpenProblemsInCAI" target="_blank" rel="noreferrer" class="resource-link">code</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/constitutional-prefs.jpg" alt="Reconstructing constitutions from preference data" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">ICLR 2026</span></div>
+                                <h4 class="paper-title">Remotely Detectable Robot Policy Watermarking</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>*, M.&nbsp;Flageat*, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">How do you verify what policy a robot is deploying without access to its internals? We formalize this remote-observation setting through noisy, asynchronous video glimpses and introduce CoNoCo, which embeds a spectral watermark into a robot's motions via colored noise while preserving the marginal action distribution. The result is remote policy auditing from ordinary footage, with applications to safety, accountability, and IP protection.</p>
+                                <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2512.15379" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://sites.google.com/view/robotpolicywatermarking/" target="_blank" rel="noreferrer" class="resource-link">website</a>
                                 </div>
                             </div>
-                            <div class="paper-visual">
-                                <img src="iclr2026-policy-watermarking.jpg" alt="Remotely detectable robot policy watermarking" class="news-media">
-                            </div>
-                        </div>
+                            <div class="paper-visual"><img src="papers/watermarking.jpg" alt="Robot platforms and tasks used to test policy watermarking" loading="lazy" decoding="async"></div>
+                        </article>
+                    </div>
+                </div>
 
-                        <div class="paper-entry">
-                            <div class="news-description">
-                                <p class="paper-title">When Is Diversity Rewarded in Cooperative Multi-Agent Learning?</p>
-                                <p>
-                                    We know how to train heterogeneous agents, but when does heterogeneity actually improve performance? In cooperative MARL, we show that the answer is tightly related to the curvature of the reward function, and introduce HetGPS, an algorithm that automatically discovers environments where diversity pays off.
-                                </p>
-                                <p class="news-authors"><strong>M. Amir</strong>*, M. Bettini*, A. Prorok</p>
-                                <div class="news-links">
+                <!-- ───────── multi-agent learning ───────── -->
+                <div class="paper-group" id="multi-agent" data-tag="multi-agent">
+                    <h3 class="group-title">multi-agent learning</h3>
+                    <div class="timeline">
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">CoRL 2026</span><span class="badge">spotlight</span></div>
+                                <h4 class="paper-title">Leave It Better Than Found: Value-Guided Cooperation in Sequential Tasks</h4>
+                                <p class="paper-authors">M.&nbsp;Gomez&nbsp;Andreu, <strong>M.&nbsp;Amir</strong>, A.&nbsp;Marino, T.&nbsp;An, M.&nbsp;Hutter, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-visual"><img src="papers/leave-it-better.jpg" alt="A leader robot rearranges a shared room so that a follower robot can pass" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">GameSec 2026</span></div>
+                                <h4 class="paper-title">Games Over Observation Spaces in Multi-Agent Capture the Flag</h4>
+                                <p class="paper-authors">M.&nbsp;Frost, <strong>M.&nbsp;Amir</strong>, S.&nbsp;D.&nbsp;Bopardikar</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">In Capture the Flag on graphs, attackers can draw on a library of heuristics while the defenders run a single fixed policy. We show that a central oracle can still diversify the defense by controlling what each defender observes, and approximate equilibria of the resulting game with a Double Oracle algorithm.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2609.06178" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://github.com/rfrost114/Visibility-Profile-Games" target="_blank" rel="noreferrer" class="resource-link">code</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/ctf-games.jpg" alt="Capture the Flag between attackers and defenders on a graph" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">ICML 2026</span></div>
+                                <h4 class="paper-title">Scaling Multi-Agent Environment Co-Design with Diffusion Models</h4>
+                                <p class="paper-authors">H.&nbsp;X.&nbsp;Li, <strong>M.&nbsp;Amir</strong>, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">Engineers train robot policies, and architects design the warehouses robots operate in. But these two problems are usually solved separately. We introduce <strong>DiCoDe</strong>, which uses diffusion models to <em>co-design</em> agent behavior and the environment together: as the agents improve they signal which environments are useful, and as the environments improve they become better training settings for the agents. This scales multi-agent co-design to much larger problems, including warehouse layouts and wind farm control.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2511.03100" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://github.com/MarkHaoxiang/diffusion-co-design" target="_blank" rel="noreferrer" class="resource-link">code</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/co-design.jpg" alt="DiCoDe: diffusion-based multi-agent environment co-design" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">ICLR 2026</span></div>
+                                <h4 class="paper-title">When Is Diversity Rewarded in Cooperative Multi-Agent Learning?</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>*, M.&nbsp;Bettini*, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">We know how to train heterogeneous agents, but when does heterogeneity actually improve performance? In cooperative MARL, we show that the answer is tightly related to the curvature of the reward function, and introduce HetGPS, an algorithm that automatically discovers environments where diversity pays off.</p>
+                                <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2506.09434" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                     <a href="https://sites.google.com/view/hetgps" target="_blank" rel="noreferrer" class="resource-link">website</a>
                                 </div>
                             </div>
-                            <div class="paper-visual">
-                                <img src="iclr2026-diversity-marl.jpg" alt="Diversity in cooperative multi-agent learning" class="news-media">
-                            </div>
-                        </div>
+                            <div class="paper-visual"><img src="papers/diversity.jpg" alt="Heterogeneous versus homogeneous agent teams and the heterogeneity gain" loading="lazy" decoding="async"></div>
+                        </article>
 
-                        <div class="paper-entry">
-                            <div class="news-description">
-                                <p class="paper-title">Pairwise is Not Enough: Hypergraph Neural Networks for Multi-Agent Pathfinding</p>
-                                <p>
-                                    Standard GNNs model pairwise interactions, but multi-agent pathfinding is fundamentally a group coordination problem. HMAGAT uses directed hypergraph attention to capture higher-order interactions, establishing a new state of the art among learning-based MAPF solvers and outperforming a much larger baseline in dense environments.
-                                </p>
-                                <p class="news-authors">R. Jain, K. Okumura, <strong>M. Amir</strong>, P. Lio, A. Prorok</p>
-                                <div class="news-links">
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">CoRL 2025</span></div>
+                                <h4 class="paper-title">ReCoDe: Reinforcement Learning-based Dynamic Constraint Design for Multi-Agent Coordination</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, G.&nbsp;Yang, Z.&nbsp;Gao, K.&nbsp;Okumura, H.&nbsp;Woo, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">We introduced ReCoDe, a novel RL framework that learns to dynamically generate <i>constraints</i>, rather than actions, to improve team coordination in real-time. This allows agent teams to benefit from expert controllers that determine their next action subject to these constraints.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2507.19151" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://www.youtube.com/watch?v=PQTa5rV8d4g" target="_blank" rel="noreferrer" class="resource-link">video</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="recode.gif" alt="ReCoDe robot experiment" loading="lazy" decoding="async"></div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ───────── multi-robot planning ───────── -->
+                <div class="paper-group" id="planning" data-tag="planning">
+                    <h3 class="group-title">multi-robot planning</h3>
+                    <div class="timeline">
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Preprint 2026</span></div>
+                                <h4 class="paper-title">GAMBIT: Learning to Plan Continuous Multi-Robot Trajectories</h4>
+                                <p class="paper-authors">R.&nbsp;Jain, A.&nbsp;Moldagalieva, L.&nbsp;Magnino, <strong>M.&nbsp;Amir</strong>, K.&nbsp;Okumura, A.&nbsp;Shankar, W.&nbsp;Hönig, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">GAMBIT learns to plan continuous trajectories for large robot teams by selecting coordinated motion primitives, with a safeguarded rollout that guarantees collision-free execution. Like the chess opening it is named after, robots learn to give up locally optimal moves to help the team, and the planner scales to over a thousand robots.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2610.06290" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/gambit.jpg" alt="GAMBIT: continuous multi-robot trajectory planning" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">ICLR 2026</span></div>
+                                <h4 class="paper-title">Pairwise is Not Enough: Hypergraph Neural Networks for Multi-Agent Pathfinding</h4>
+                                <p class="paper-authors">R.&nbsp;Jain, K.&nbsp;Okumura, <strong>M.&nbsp;Amir</strong>, P.&nbsp;Lio, A.&nbsp;Prorok</p>
+                            </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">Standard GNNs model pairwise interactions, but multi-agent pathfinding is fundamentally a group coordination problem. HMAGAT uses directed hypergraph attention to capture higher-order interactions, establishing a new state of the art among learning-based MAPF solvers and outperforming a much larger baseline in dense environments.</p>
+                                <div class="paper-links">
                                     <a href="https://arxiv.org/abs/2602.06733" target="_blank" rel="noreferrer" class="resource-link">paper</a>
                                 </div>
                             </div>
-                            <div class="paper-visual">
-                                <img src="iclr2026-hypergraph-mapf.gif" alt="Hypergraph neural networks for multi-agent pathfinding" class="news-media">
+                            <div class="paper-visual"><img src="iclr2026-hypergraph-mapf.gif" alt="Hypergraph neural networks for multi-agent pathfinding" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">AAAI 2026</span><span class="badge">oral</span></div>
+                                <h4 class="paper-title">Graph Attention-Guided Search for Dense Multi-Agent Pathfinding</h4>
+                                <p class="paper-authors">R.&nbsp;Jain, K.&nbsp;Okumura, <strong>M.&nbsp;Amir</strong>, A.&nbsp;Prorok</p>
                             </div>
-                        </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">Finding near-optimal solutions for dense multi-agent pathfinding (MAPF) problems in real-time remains challenging even for state-of-the-art planners. To this end, we develop a hybrid framework that integrates a learned heuristic derived from MAGAT, a neural MAPF policy with a graph attention scheme, into a leading search-based algorithm, LaCAM. Our work establishes, perhaps for the first time, that learnt heuristics can outperform SoTA search-based planners in dense MAPF problems.</p>
+                                <div class="paper-links">
+                                    <a href="https://arxiv.org/abs/2510.17382" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://github.com/proroklab/lagat" target="_blank" rel="noreferrer" class="resource-link">code</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="lagat_graphic_2.png" alt="LaGAT: graph attention-guided search" loading="lazy" decoding="async"></div>
+                        </article>
                     </div>
                 </div>
 
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">Oral @ AAAI 2026</div>
-                        <div class="news-date">2025.11</div>
-                    </div>
-                    <p class="news-title">Graph Attention-Guided Search for Dense Multi-Agent Pathfinding</p>
-                    <div class="news-content">
-                        <img src="lagat_graphic_2.png" alt="LAGAT graphic" class="news-media">
-                        <div class="news-description">
-                            <p>Finding near-optimal solutions for dense multi-agent pathfinding (MAPF) problems in real-time remains challenging even for state-of-the-art planners. To this end, we develop a hybrid framework that integrates a learned heuristic derived from MAGAT, a neural MAPF policy with a graph attention scheme, into a leading search-based algorithm, LaCAM. Our work establishes, perhaps for the first time, that learnt heuristics can outperform SoTA search-based planners in dense MAPF problems.</p>
-                            <p class="news-authors">R. Jain, K. Okumura, <strong>M. Amir</strong>, A. Prorok</p>
-                            <div class="news-links">
-                                <a href="https://arxiv.org/abs/2510.17382" target="_blank" rel="noreferrer" class="resource-link">paper</a>
-                                <a href="https://github.com/proroklab/lagat" target="_blank" rel="noreferrer" class="resource-link">code</a>
+                <!-- ───────── swarm algorithms ───────── -->
+                <div class="paper-group" id="swarms" data-tag="swarms">
+                    <h3 class="group-title">swarm algorithms</h3>
+                    <div class="timeline">
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">IEEE T-RO 2025</span></div>
+                                <h4 class="paper-title">Time, Travel, and Energy in the Uniform Dispersion Problem</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, A.&nbsp;M.&nbsp;Bruckstein</p>
                             </div>
-                        </div>
+                            <div class="paper-body">
+                                <p class="paper-desc">This work explores the fundamental efficiency limits of robot swarms. We prove when it's possible (or impossible!) to simultaneously optimize for time, distance, and energy during dispersion, and introduce <strong>FCDFS</strong>, an ant-robotics algorithm that achieves these bounds using only 5 bits of memory and zero communication.</p>
+                                <div class="paper-links">
+                                    <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2404.19564" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/dispersion-tro.jpg" alt="Uniform dispersion of a robot swarm" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Theoretical Computer Science 2024</span></div>
+                                <h4 class="paper-title">Optimally Reordering Mobile Agents on Parallel Rows</h4>
+                                <p class="paper-authors">D.&nbsp;Rabinovich*, <strong>M.&nbsp;Amir</strong>*, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1016/j.tcs.2023.114330" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2111.06284" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/sorting-tcs.jpg" alt="Red and blue cars reordered on parallel rows" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">WAFR 2024</span></div>
+                                <h4 class="paper-title">Patrolling Grids with a Bit of Memory</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>*, D.&nbsp;Rabinovich*, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1007/978-3-032-09970-9_8" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2307.09214" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/patrolling-wafr.jpg" alt="A one-bit patrol route on a grid" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">CDC 2023</span></div>
+                                <h4 class="paper-title">Multi-Agent Distributed and Decentralized Geometric Task Allocation</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, Y.&nbsp;Koifman, Y.&nbsp;Bloch, A.&nbsp;Barel, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1109/CDC49753.2023.10383740" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2210.05552" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/task-allocation-cdc.jpg" alt="Agents spreading over a demand density map" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">IROS 2023</span></div>
+                                <h4 class="paper-title">Competitive Ant Coverage: The Value of Pursuit</h4>
+                                <p class="paper-authors">A.&nbsp;Shats, <strong>M.&nbsp;Amir</strong>, N.&nbsp;Agmon</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1109/IROS55552.2023.10342063" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://u.cs.biu.ac.il/~agmon/ShatsIROS23.pdf" target="_blank" rel="noreferrer" class="resource-link">pdf</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/ant-coverage-iros.jpg" alt="A spanning-tree coverage path on a grid" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">AAMAS 2023</span></div>
+                                <h4 class="paper-title">Stigmergy-based, Dual-Layer Coverage of Unknown Regions</h4>
+                                <p class="paper-authors">O.&nbsp;Rappel*, <strong>M.&nbsp;Amir</strong>*, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://www.ifaamas.org/Proceedings/aamas2023/pdfs/p1439.pdf" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2209.08573" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/stigmergy-aamas.jpg" alt="Beacon-based coverage of an unknown region" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Entropy 2022</span></div>
+                                <h4 class="paper-title">A Locust-Inspired Model of Collective Marching on Rings</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, N.&nbsp;Agmon, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.3390/e24070918" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/marching-entropy.jpg" alt="Locusts marching in a ring-shaped arena" title="Photo: Amir Ayali" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">DARS 2021</span></div>
+                                <h4 class="paper-title">A Discrete Model of Collective Marching on Rings</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, N.&nbsp;Agmon, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1007/978-3-030-92790-5_25" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/2012.04980" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/marching-dars.jpg" alt="Agents marching on a ring with multiple tracks" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">RSS 2020</span></div>
+                                <h4 class="paper-title">Fast Uniform Dispersion of a Crash-Prone Swarm</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://www.roboticsproceedings.org/rss16/p017.html" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/1907.00956" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/dispersion-rss.jpg" alt="A swarm dispersing through a grid environment" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">Theoretical Computer Science 2019</span></div>
+                                <h4 class="paper-title">Probabilistic Pursuits on Graphs</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://doi.org/10.1016/j.tcs.2019.08.001" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/1710.08107" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/pursuits-tcs.jpg" alt="Chain pursuit on a grid graph" loading="lazy" decoding="async"></div>
+                        </article>
+
+                        <article class="paper">
+                            <div class="paper-head">
+                                <div class="paper-meta"><span class="venue">AAMAS 2019</span></div>
+                                <h4 class="paper-title">Minimizing Travel in the Uniform Dispersal Problem for Robotic Sensors</h4>
+                                <p class="paper-authors"><strong>M.&nbsp;Amir</strong>, A.&nbsp;M.&nbsp;Bruckstein</p>
+                            </div>
+                            <div class="paper-body">
+                                <div class="paper-links">
+                                    <a href="https://www.ifaamas.org/Proceedings/aamas2019/pdfs/p113.pdf" target="_blank" rel="noreferrer" class="resource-link">paper</a>
+                                    <a href="https://arxiv.org/abs/1903.03259" target="_blank" rel="noreferrer" class="resource-link">arxiv</a>
+                                </div>
+                            </div>
+                            <div class="paper-visual"><img src="papers/dispersion-aamas.jpg" alt="Robots dispersing through a maze" loading="lazy" decoding="async"></div>
+                        </article>
                     </div>
                 </div>
 
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">CoRL 2025</div>
-                        <div class="news-date">2025.08</div>
-                    </div>
-                    <p class="news-title">ReCoDe: RL-based Dynamic Constraint Design for Multi-Agent Coordination</p>
-                    <div class="news-content">
-                        <img src="recode.gif" alt="ReCoDe robot experiment" class="news-media">
-                        <div class="news-description">
-                            <p>We introduced ReCoDe, a novel RL framework that learns to dynamically generate <i>constraints</i>, rather than actions, to improve team coordination in real-time. This allows agent teams to benefit from expert controllers that determine their next action subject to these constraints.</p>
-                            <p class="news-authors"><strong>M. Amir</strong>, G. Yang, Z. Gao, K. Okumura, H. Woo, A. Prorok</p>
-                            <div class="news-links">
-                                <a href="https://arxiv.org/abs/2507.19151" target="_blank" rel="noreferrer" class="resource-link">paper</a>
-                                <a href="https://www.youtube.com/watch?v=PQTa5rV8d4g" target="_blank" rel="noreferrer" class="resource-link">video</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="news-type">IEEE T-RO</div>
-                        <div class="news-date">2025.07</div>
-                    </div>
-                    <p class="news-title">Time, Travel, and Energy in the Uniform Dispersion Problem</p>
-                    <div class="news-content">
-                        <div class="news-description">
-                            <p>This work explores the fundamental efficiency limits of robot swarms. We prove when it's possible (or impossible!) to simultaneously optimize for time, distance, and energy during dispersion, and introduce <strong>FCDFS</strong>, an ant-robotics algorithm that achieves these bounds using only 5 bits of memory and zero communication.</p>
-                            <p class="news-authors"><strong>M. Amir</strong> and A. M. Bruckstein</p>
-                            <div class="news-links">
-                                <a href="https://ieeexplore.ieee.org/document/11027451" target="_blank" rel="noreferrer" class="resource-link">paper</a>
-                                <a href="https://arxiv.org/abs/2404.19564" target="_blank" rel="noreferrer" class="resource-link">preprint</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <section id="reviewing">
-        <div class="container">
-            <h2>Reviewing</h2>
-            <p class="reviewing-list">Nature Comms. Eng. &middot; IEEE T-RO &middot; JAIR &middot; ICML &middot; ICLR &middot; NeurIPS &middot; JAAMAS &middot; ECAI &middot; CoRL &middot; MRS &middot; IROS &middot; SAC &middot; DARS &middot; RSS</p>
         </div>
     </section>
 
@@ -609,20 +794,37 @@
     <footer>
         <div class="container">
             <span>london, uk</span>
-            <span>last updated 2026.07</span>
+            <span>last updated 2026.10</span>
         </div>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 50);
-                    observer.unobserve(entry.target);
-                }
+        const papers = document.querySelectorAll('.paper');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => entry.target.classList.add('visible'), i * 50);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.04 });
+            papers.forEach(el => observer.observe(el));
+        } else {
+            papers.forEach(el => el.classList.add('visible'));
+        }
+
+        const tags = document.querySelectorAll('.tag');
+        const groups = document.querySelectorAll('.paper-group');
+        tags.forEach(tag => {
+            const filter = tag.dataset.filter;
+            const scope = filter === 'all' ? document : document.querySelector(`.paper-group[data-tag="${filter}"]`);
+            tag.querySelector('.tag-count').textContent = scope.querySelectorAll('.paper').length;
+            tag.addEventListener('click', () => {
+                tags.forEach(t => t.setAttribute('aria-pressed', String(t === tag)));
+                groups.forEach(g => { g.hidden = filter !== 'all' && g.dataset.tag !== filter; });
             });
-        }, { threshold: 0.04 });
-        document.querySelectorAll('.news-item').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
